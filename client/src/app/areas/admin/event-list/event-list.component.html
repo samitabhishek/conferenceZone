@@ -1,0 +1,66 @@
+<div class="form-group p-3">
+  
+        <a [routerLink]="['/admin/addevent/']"   class="btn btn-success">Add new Event</a>
+          
+ </div>
+<table class="table">
+  
+    <tbody>
+            <tr *ngFor="let item of event; let i = index">
+                    <div class="container py-3 ">
+                              
+                            <div class="card bg-translucent">
+                                    <div class="row ">
+                                <div class="col-md-3 ">
+                                    <img [src]="this.path + item.imagePath" class="w-100 h-100 p-3">
+                                  </div>
+                                  <div class="col-md-3 p-3">
+                                    <div class="card-block px-3">
+                                      <h4 class="card-title">{{item.name}}</h4>
+                                      <p class="card-text">Date : {{item.date}}</p>
+                                      <p class="card-text">Venue: {{item.venue}}<p>
+                                      <p class="card-text">Price: {{item.price}}<p>
+                                      <!-- <a [routerLink]="['/admin/editevent/',item._id]"   class="btn btn-primary">Edit</a>   &nbsp; -->
+                                      <button class="btn btn-danger" (click) = "DeleteData(item._id,i)"> Delete</button>
+                                      
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2 p-3">
+                                      <br/>
+                                        <h5 class="card-title">Speakers </h5>
+                                        <p class="card-text" *ngFor="let x of item.speakers">{{x}}<br/></p>
+
+                                  </div>
+                                  <div class="col-md-2 p-3">
+                                        <br/>
+                                        <h5 class="card-title">Sponsers</h5>
+                                        <div *ngFor="let temp of item.sponsers"><div *ngFor="let tempEvent of sponser"><p *ngIf="tempEvent._id==temp"><img height="30px" width="30px" [src]="this.path + tempEvent.imagePath"/>&nbsp;{{tempEvent.name}} <br/></p></div></div>
+
+                                  </div>
+                                  <div class="col-md-2 p-3">
+                                        <br/>
+                                        <h5 class="card-title">Offers</h5>
+                                        <div *ngFor="let temp of item.offers"><div *ngFor="let tempEvent of offer"><p *ngIf="tempEvent._id==temp">{{tempEvent.name}}<br/></p></div></div>
+                                  </div>
+                        
+                                </div>
+                                
+                              </div>
+                            </div>
+                <!-- <td> {{i+1}} </td>
+                <td> <img height="100px" width="150px" [src]="this.path + item.imagepath"/> </td>
+                <td> {{item.name}} </td>
+                <td> {{item.date}}</td>
+                <td> {{item.venue}}</td>
+                <td> {{item.price}}</td>
+                <td> {{item.speakers}}</td>
+                <td><div *ngFor="let temp of item.sponsers"><div *ngFor="let tempEvent of sponser"><p *ngIf="tempEvent._id==temp">{{tempEvent.name}}<br/></p></div></div></td>
+                <td><div *ngFor="let temp of item.offers"><div *ngFor="let tempEvent of offer"><p *ngIf="tempEvent._id==temp">{{tempEvent.name}}<br/></p></div></div></td>
+                <td> 
+                    <button class="btn btn-danger" (click) = "DeleteData(item._id,i)"> Delete </button>
+                    &nbsp;
+                    <a [routerLink]="['/admin/editevent/',item._id]" class="btn btn-info">Edit</a>  
+                </td> -->
+            </tr>
+        </tbody>
+</table>

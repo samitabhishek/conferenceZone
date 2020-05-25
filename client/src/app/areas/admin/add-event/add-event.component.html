@@ -1,0 +1,164 @@
+<form #form="ngForm" (ngSubmit)="SaveData(form)">
+<div class="container row py-3 bg-light my-3">
+
+ 
+ <div class="col">   
+
+
+    <div class="form-group">
+      <label for="">Event Name</label>
+      <input type="text" name="name" id="name" #name="ngModel" [(ngModel)]="event.name" class="form-control" placeholder="" required minlength="3">
+      <div class="text-danger" *ngIf="name.errors && (name.dirty ||form.submitted)">
+            <span [hidden]="!name.errors.required">Please Enter Name</span>
+            <span [hidden]="!name.errors.minlength">Name must have atleast three characters</span>
+            
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label for="">Date of the Event</label>
+      <input type="date" name="date" id="date" #date="ngModel" [(ngModel)]="temp_date" (change)="DateValidate()" class="form-control" placeholder="" required>
+      <div class="text-danger" *ngIf="date.errors && (date.dirty ||form.submitted)">
+            <span [hidden]="!date.errors.required">Please Enter Date</span>
+            
+            
+        </div>
+    </div>
+    <div class="form-group">
+        <p class="text-danger">{{date_err}}</p>
+    </div>
+
+  
+
+    <div class="form-group">
+            <label for="">Venue</label>
+            <input type="text" name="venue" id="venue" #venue="ngModel" [(ngModel)]="event.venue" class="form-control" placeholder="" required>
+            <div class="text-danger" *ngIf="venue.errors && (venue.dirty ||form.submitted)">
+                    <span [hidden]="!venue.errors.required">Please Enter Venue</span>
+                    
+                </div>
+    </div>
+    <div class="form-group">
+            <label for="">Price</label>
+            <input type="text" name="venue" id="venue" #venue="ngModel" [(ngModel)]="event.price" class="form-control" placeholder="" default=0>
+            
+    </div>
+
+  
+
+    <!-- <div class="form-group">
+            <label for="">Sponsers</label>
+            <input type="text" name="Sponsers" id="sponsers" #sponsers="ngModel" [(ngModel)]="event.sponser" class="form-control" placeholder="" >
+           
+    </div> -->
+    <div class="form-group">
+    <label>Choose Sponsers</label>
+            <ng-multiselect-dropdown
+
+
+            name="sponsers"
+            [placeholder]="'Select Sponsers'"
+            [(ngModel)]="selectedItems"
+            
+            [data]="dropdownList"
+            [settings]="dropdownSettings"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)" >
+
+            </ng-multiselect-dropdown>
+        </div>
+
+
+<!-- 
+    <div class="form-group">
+            <label for="">Offers</label>
+            <input type="text" name="offers" id="offers" #offers="ngModel" [(ngModel)]="event.offers" class="form-control" placeholder="" >
+        
+    </div> -->
+    <div class="form-group">
+    <label>Choose Offers</label>
+    <ng-multiselect-dropdown
+
+
+    name="offers"
+    [placeholder]="'Select Offers'"
+    [(ngModel)]="selectedItems2"
+    
+    [data]="dropdownList2"
+    [settings]="dropdownSettings2"
+    (onSelect)="onItemSelect2($event)"
+    (onSelectAll)="onSelectAll2($event)" >
+
+    </ng-multiselect-dropdown>
+    </div>
+
+
+    <div class="form-group">
+            <input type="submit" value="Add Event" class="btn btn-primary"/> &nbsp;
+            <!-- <input type="reset" value="Reset" class="btn btn-secondary"/>       -->
+    </div>
+
+
+          
+
+
+
+
+
+</div>
+<div class="col py-2">
+    <br/>  
+    <div class="form-group">
+            <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" #image="ngModel" (change)='onSelectFile($event)' [(ngModel)]="event.imagePath" required>
+                    <label class="custom-file-label" for="inputGroupFile01">Choose picture for Event </label>
+                    <div class="text-danger" *ngIf="image.errors && (image.dirty ||form.submitted)">
+                            <span [hidden]="!image.errors.required">Please Select a Image</span>
+                            
+                    </div>
+             </div>
+    </div>
+    <div class="form-group">
+            <label for="">Time of the Event</label>
+            <input type="time" name="time" id="time" #time="ngModel" [(ngModel)]="event.time" class="form-control" placeholder="" required>
+            <div class="text-danger" *ngIf="time.errors && (time.dirty ||form.submitted)">
+                    <span [hidden]="!time.errors.required">Please Enter Time</span>                    
+            </div>
+            
+    </div>
+        <div class="form-group">
+                <label for="">Name of the Speakers</label>
+                <input type="text" name="speaker" id="speaker" #speaker="ngModel" [(ngModel)]="temp_speaker" class="form-control" placeholder="" >
+            
+        </div>
+        <div class="form-group">
+                <label for="">Name of the Topic</label>
+                <input type="text" name="topic" id="topic" #topic="ngModel" [(ngModel)]="temp_topic" class="form-control" placeholder="" >
+            
+        </div>
+        <!-- <div class="form-group">
+                <label for="">Image of the Speaker</label>
+                <input type="file" name="speaker" id="speaker" #speaker="ngModel" [(ngModel)]="temp_speaker" class="form-control" placeholder="" >
+            
+        </div> -->
+            
+        <div class="form-group">
+            <br/>
+        <div>
+            <button type="button" (click)="AddSpeaker() " class="btn btn-primary">Add Speaker</button>
+        </div>
+    </div>
+        <br/>
+        <div class="form-group">
+            <div *ngFor="let item of speakers; let i=index"><strong>Speaker : </strong> {{item}} &nbsp;&nbsp; <strong>Topic :</strong> {{topics[i]}}&nbsp;&nbsp;<button type="button" class="close" (click)="DeleteSpeaker(item)"><span aria-hidden="true">&times;</span></button></div>
+        </div>
+      
+        
+       
+
+</div>
+</div>
+
+
+
+</form>

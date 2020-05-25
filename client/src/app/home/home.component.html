@@ -1,0 +1,41 @@
+
+<br/>
+<h4 class="mx-3">Ongoing Events</h4>
+<br/>
+
+<div class="row d-inline-block text-center" *ngFor="let item of event; let i = index">
+
+
+
+
+
+    <div *ngIf="i<4"  class="card d-inline-block mx-4 my-2" style="width: 16rem;">
+        <img height="200px" width="250px" [src]="this.path + item.imagePath" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{item.name}}</h5>
+            <p class="card-text">Date : {{item.date}} <br /> Time : {{item.time}} <br /> Price : {{item.price}}</p>
+            <a [routerLink]="['/register/',item._id]" class="btn btn-primary">Buy Ticket</a> &nbsp;&nbsp;&nbsp;
+            <a [routerLink]="['/eventdetails/',item._id]" class="btn btn-secondary">Details</a>
+        </div>
+    </div>
+
+</div>
+<div class="text-right p-4">
+        <a [routerLink]="['/buyticket']" class="btn btn-secondary">See All Events</a>
+</div>
+<div class="border rounded row">
+    <div class="col-3">
+        <br/>
+        <h6 class="mx-3">Ongoing Offers</h6>
+        <br/>
+        <div class="mx-3" *ngFor="let temp of offer;let i=index">&bull;&nbsp;{{temp.name}} get {{temp.amount}} OFF !</div>
+    </div>
+    <div   class="col-9">
+            <br/>
+            <h6 class="mx-3">Topics in the Upcoming Event</h6>
+            <br/>
+            <marquee behavior="" direction="up" height="200px">
+            <div class="mx-3" *ngFor="let temp of event;let i=index"><div *ngFor="let temp2 of temp.topics;let j=index">&bull;&nbsp;{{temp2}} by <span class="text-primary"> {{event[i].speakers[j]}} </span> in the Event <span> : {{event[i].name}}  </span></div></div>
+            </marquee>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="container ">
+        <div class="row text-center">
+                <div class="col"></div>
+                        <div class="col" >
+                                        <img width="400px" height="300px" [src]="this.path + event.imagePath" alt="..." class="img-thumbnail text-center">
+                                    </div>
+                                    <div class="col"></div>
+        </div>
+        <form #form="ngForm" (ngSubmit)="SaveData(form)">
+            <div class="row py-3"> 
+                <div class="col">       
+            <div class="form-group">
+              <label for="">Event Name</label>
+              <input type="text" name="name" id="name" #name="ngModel" [(ngModel)]="event.name" class="form-control" placeholder="" readonly="true" >
+              
+            </div>
+        
+            <div class="form-group">
+              <label for="">Your Full Name</label>
+              <input type="text" name="username" id="username" #username="ngModel" [(ngModel)]="user.name" class="form-control" placeholder="Enter Name"  required minlength="3">
+              <div class="text-danger" *ngIf="username.errors && (username.dirty ||form.submitted)">
+                    <span [hidden]="!username.errors.required">Please Enter Name</span>
+                    <span [hidden]="!username.errors.minlength">Name must have atleast three character</span>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" name="email" id="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" placeholder="Enter Email" required email >
+                    <div class="text-danger" *ngIf="email.errors && (email.dirty ||form.submitted)">
+                            <span [hidden]="!email.errors.required">Please Enter Email</span>
+                            <span [hidden]="!email.errors.email">Please enter the valid Email Id</span>
+                        </div>
+            </div>
+            <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" name="contactNo" class="form-control" placeholder="Enter the contact number"
+                            #contactNo="ngModel" [(ngModel)]="user.contact" required pattern="^[0][1-9]\d{9}$|^[1-9]\d{9}$" />
+                        <div class="text-danger" *ngIf="contactNo.errors && (contactNo.dirty ||form.submitted)">
+                            <span [hidden]="!contactNo.errors.required">Please Enter Contact Number</span>
+                            <span [hidden]="!contactNo.errors.pattern">Please enter valid Contact number</span>
+                        </div>
+                    </div>
+            <!-- <div class="form-group">
+                    <label for="">Contact</label>
+                    <input type="text" name="contact" id="contact" #contact="ngModel" [(ngModel)]="user.contact" class="form-control" placeholder="" required pattern="^[0][1-9]\d{9}$|^[1-9]\d{9}$" >
+                    <div class="text-danger" *ngIf="contact.errors && (contact.dirty ||form.submitted)">
+                                <span [hidden]="!contact.errors.required">Please Enter Age</span>
+                            <span [hidden]="!contact.errors.required">Please Enter Contact Number</span>
+                            <span [hidden]="!contact.errors.pattern">Please enter valid Contact number</span>
+                    </div>
+            </div> -->
+            <div class="form-group">
+                    <label for="">Age</label>
+                    <input type="number" name="age" id="age" #age="ngModel" [(ngModel)]="user.age" class="form-control" placeholder="Age" required max="100" >
+                    <div class="text-danger" *ngIf="age.errors && (age.dirty ||form.submitted)">
+                            <span [hidden]="!age.errors.required">Please Enter Age</span>
+                            <span [hidden]="!age.errors.max">Age cannot be greater than 100</span>
+                        </div>
+            </div>
+            <div class="form-group">
+                    <input type="submit" value="Register" class="btn btn-primary"/> &nbsp;
+                    <!-- <input type="reset" value="Reset" class="btn btn-secondary"/>       -->
+                </div>
+            
+        </div>
+        <div class="col">
+                        
+                <div class="form-group">
+                        <label for="">Gender</label>
+                        <select class="form-control" name="gender" id="gender" #gender="ngModel" [(ngModel)]="user.gender" required>
+                            <option value="Male">male</option>
+                            <option value="Female">female</option>
+                        </select>
+                        <div class="text-danger" *ngIf="gender.errors && (gender.dirty ||form.submitted)">
+                                <span [hidden]="!gender.errors.required">Please Enter Gender</span>
+                                
+                            </div>
+                        
+                </div>
+                <!-- <div class="form-group">
+                        <label for="">Qualifications</label>
+                        <select class="form-control" name="qualifications" id="qualifications" #qualifications="ngModel" [(ngModel)]="user.occupation" required>
+                                <option value="student">Student</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="post graduate">Post Graduate</option>
+                                <option value="Other">Other</option>
+                        </select>
+                        <div class="text-danger" *ngIf="qualifications.errors && (qualifications.dirty ||form.submitted)">
+                                <span [hidden]="!qualifications.errors.required">Please Enter Qualification</span>
+                                
+                            </div>
+                       
+                        
+                </div> -->
+            <div class="form-group">
+                    <label for="">Price</label>
+                    <input type="number" name="price" id="price" #contact="ngModel" [(ngModel)]="amountPaid" class="form-control" placeholder="" readonly="true">
+                    
+            </div>
+            <div class="form-group">
+                    <label for="">Select your Offer</label>
+                    <select name="offers" id="offers" class="form-control" #offers="ngModel" [(ngModel)]="selectedoffer" (change)="Discount()" >
+                            <option value="0">---No--Discount--</option>
+                            <option *ngFor="let item of event.offers" value ={{item}}><div *ngFor="let temp of offerArray"><p *ngIf="temp._id==item">{{temp.name}}--{{temp.amount}}--discount</p></div></option>
+                       
+                    </select>
+                    
+            </div>
+            <div class="form-group">
+                    <div *ngIf="offerApplied"><p>Offer Succesfully Applied</p></div>
+            </div>
+        </div>
+         
+        
+          
+
+            
+        
+           
+           
+        
+        
+                  
+        
+        
+            </div>
+
+        </form>
+        
+        </div>
+        

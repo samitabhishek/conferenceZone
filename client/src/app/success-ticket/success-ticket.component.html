@@ -1,0 +1,24 @@
+<div class="container p-5">
+    <h4>Congratulations Your Booking is Confirmed</h4>
+    <br/>
+    <div class="row">
+        <div class="col">
+   <p> Name: {{user.name}}</p>
+   <p> Email: {{user.email}}</p>
+   <p> Contact: {{user.contact}}</p>
+   <p> Gender: {{user.gender}}</p>
+   <p> Age: {{user.age}}</p>
+   <p> Event Name: {{event.name}}</p>
+   <p *ngIf="user.amountPaid==null">Amount Paid: Free Ticket</p>
+   <p *ngIf="user.amountPaid!=null">Amount Paid: {{user.amountPaid}}</p>
+</div>
+<div class="col">
+        <img height="200px" width="250px" [src]="this.path + event.imagePath" class="card-img-top" alt="...">
+        <p>Venue : {{event.venue}}</p>
+        <p>Date : {{event.date}}</p>
+        <p>Time : {{event.time}}</p>
+</div>
+</div>
+
+    
+</div>

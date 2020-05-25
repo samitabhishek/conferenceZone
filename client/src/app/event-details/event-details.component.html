@@ -1,0 +1,57 @@
+<div class="row border rounded p-2">
+    <div class="col-4">
+        <img [src]="this.path + event.imagePath" alt="..." class="img-thumbnail">
+    </div>
+    <div class="col-8">
+        <h4 class="py-2">
+            Event Name :&nbsp;
+            <small class="text-muted">{{event.name}}</small>
+        </h4>
+        <h5 class="py-2">
+            Venue:&nbsp;
+            <small class="text-muted">{{event.venue}}</small>
+        </h5 >
+        <h5>
+           Date & Time:&nbsp;
+            <small class="text-muted">{{event.date}}</small>&nbsp;&nbsp;&nbsp;<small class="text-muted">{{event.time}}</small>
+        </h5 >
+        <h5 class="py-2">
+                Price:&nbsp;
+                <small class="text-muted">{{event.price}}</small>
+        </h5>
+        <a  [routerLink]="['/register/',event._id]"   class="btn btn-primary my-2">Buy Ticket</a>
+    </div>
+    
+</div>
+<div class="row p-3 border rounded">
+    <div class="col">
+   <br/>
+    
+    <h5>Speakers and Topics Details</h5>
+    <br/>
+    <p  *ngFor="let x of event.speakers;let i=index">&bull;&nbsp;&nbsp;<strong>{{x}}</strong> will Speak on <strong>{{event.topics[i]}}</strong><br/></p>
+</div>
+
+</div>
+<div class="row p-3 border rounded">
+    <div class="col">
+            <br/>
+            <h6>Offers Applicable to this Event</h6>
+            <br/>
+            <div *ngIf="event.offers==''"><p class="text-muted">Sorry No Offer for this Event</p></div>
+            <div *ngFor="let temp of event.offers;let i=index"><div *ngFor="let tempEvent of offer"><p *ngIf="tempEvent._id==temp">&bull;&nbsp;&nbsp;{{tempEvent.name}}&nbsp;&nbsp;(Get {{tempEvent.amount}} OFF )<br/></p></div></div>
+
+    </div>
+    <div class="col">
+            <br/>
+            <h6>Sponsers of this Event</h6>
+            <br/>
+            <div *ngIf="event.sponsers==''"><p class="text-muted">No Sponsers for this Event</p></div>
+            <div *ngFor="let temp of event.sponsers;let i=index"><div *ngFor="let tempEvent of sponser"><p *ngIf="tempEvent._id==temp">&bull;&nbsp;&nbsp;<img class="rounded-circle" height="50px" width="50px" [src]="this.path + tempEvent.imagePath"/>  &nbsp; {{tempEvent.name}} <br/></p></div></div>
+
+
+    </div>
+
+
+
+</div>

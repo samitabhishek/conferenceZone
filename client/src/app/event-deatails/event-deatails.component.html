@@ -1,0 +1,21 @@
+
+<div class="row d-inline-block text-center" *ngFor="let item of event; let i = index">
+
+
+
+
+
+        <div  class="card d-inline-block mx-4 my-2" style="width: 16rem;">
+            <img height="200px" width="250px" [src]="this.path + item.imagePath" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="card-text">Date : {{item.date}} <br /> Time : {{item.time}} <br /> Price : {{item.price}}</p>
+                <a [routerLink]="['/register/',item._id]" class="btn btn-primary">Buy Ticket</a> &nbsp;&nbsp;&nbsp;
+                <a [routerLink]="['/eventdetails/',item._id]" class="btn btn-secondary">Details</a>
+            </div>
+        </div>
+    
+    </div>
+
+
+

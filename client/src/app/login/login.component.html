@@ -1,0 +1,46 @@
+<form #form="ngForm" (ngSubmit)="SaveData(form)">
+        <div class="container row py-3 bg-light my-3 ">
+                
+                <div class="col">
+        
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                      <label for="">User Name / Email</label>
+                      <input type="text" name="username" id="username" #email="ngModel" [(ngModel)]="admin.email" class="form-control" placeholder="" required >
+                      <div class="text-danger" *ngIf="email.errors && (email.dirty ||form.submitted)">
+                          <span [hidden]="!email.errors.required">Please Enter Email / Username</span>
+                          
+                      </div>
+                    </div>
+                
+                    <div class="form-group">
+                      <label for="">Password</label>
+                      <input type="password" name="password" id="password" #password="ngModel" [(ngModel)]="admin.password" class="form-control" placeholder="">
+                      
+                    </div>
+                    <div class="form-group">
+                        <p class="error">{{error}}</p>
+                    </div>
+                
+                   
+                
+                   
+                    <div class="form-group">
+                            <input type="submit" value="Log In" class="btn btn-primary"/> &nbsp;
+                               
+                        </div>
+                    </div>
+                
+                    <div class="col">
+        
+                    </div>
+                          
+                
+                
+                
+              
+                
+                </div>
+            </form>
+                

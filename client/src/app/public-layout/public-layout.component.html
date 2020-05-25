@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" [routerLink]="['/']" >ConferenceZone</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+           
+           
+            
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/buyticket']">See All Events</a>
+            </li>
+           
+          </ul>
+          <ul class="float-right navbar-nav">
+                <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/login']">Admin LogIn</a>
+                </li>
+          </ul>
+          
+        </div>
+      </nav>
+      <div class="container bg-light my-3">
+            <router-outlet></router-outlet>
+           
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
